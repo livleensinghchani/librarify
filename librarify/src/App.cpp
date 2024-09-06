@@ -2,36 +2,22 @@
 
 int main(void)
 {
-  GLFWwindow* window;
+  glfwInit();
 
-  /* Initialize the library */
-  if (!glfwInit())
-    return -1;
+  GLFWwindow* window = glfwCreateWindow(1280, 720, "Librarify", NULL, NULL);
 
-  /* Create a windowed mode window and its OpenGL context */
-  window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-  if (!window)
-  {
-    glfwTerminate();
-    return -1;
-  }
-
-  /* Make the window's context current */
   glfwMakeContextCurrent(window);
 
-  /* Loop until the user closes the window */
-  while (!glfwWindowShouldClose(window))
-  {
-    /* Render here */
+  while (!glfwWindowShouldClose(window)) {
     glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
-    /* Swap front and back buffers */
-    glfwSwapBuffers(window);
-
-    /* Poll for and process events */
     glfwPollEvents();
+    glfwSwapBuffers(window);
   }
 
+  glfwDestroyWindow(window);
   glfwTerminate();
+
   return 0;
 }
